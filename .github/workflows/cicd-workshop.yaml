@@ -62,13 +62,13 @@ jobs:
           tags: scofieldkkk0611/xbzz:${{github.sha}}
 
       - name: Install Cosign
-        if: success()
-        uses: sigstore/cosign-installer@v3.1.2
-          
+        uses: sigstore/cosign-installer@v3.1.2    
 
       - name: Sign image with a key
-        if: env.build_image == 'true'
+        run: |
+          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "scofieldkkk0611/xbzz:${{github.sha}}"
         env:
-          COSIGN_PASSWORD:${{secrets.COSIGN_PASSWORD}}
-        run:
-          echo 'y' | cosign sign --key cosign.key scofieldkkk0611/xbzz:${{github.sha}}
+          
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+           
