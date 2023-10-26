@@ -64,7 +64,7 @@ jobs:
 
       - name: Sign image with a key
         run: |
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "scofieldkkk0611/xbzz:${{git.SHA}}"
+          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "scofieldkkk0611/xbzz:${{github.SHA}}"
         env:
           TAGS: ${{ steps.docker_meta.outputs.tags }}
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
