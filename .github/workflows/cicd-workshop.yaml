@@ -28,8 +28,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK}}
           SLACK_MESSAGE: |
-            *Scan Failed. --Zheng Ruokun*
-            &#x1F622
+            *Scan Failed. --Zheng Ruokun* &#x1F622
 
       
       - name: Upload file to Slack
