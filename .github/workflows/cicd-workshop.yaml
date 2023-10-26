@@ -19,16 +19,18 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-output.txt'
-          severity: 'CRITICAL, HIGH'
+          severity: 'CRITICAL'
           exit-code: 1
 
-      - name: Slack Notification
+      - name: Slack Failure Notification
         if: failure()
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK}}
           SLACK_MESSAGE: |
-            *Scan Failed.*
+            *Scan Failed. --Zheng Ruokun*
+            &#x1F622
+
       
       - name: Upload file to Slack
         if: failure()
@@ -72,3 +74,15 @@ jobs:
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
            
+      - name: Slack Notification
+        if: success()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK}}
+          SLACK_MESSAGE: |
+            *Success!*&#x1F60A
+            Name: Zheng Ruokun
+            Matriculation number: A0285891L
+            Email: e1221703@u.nus.edu
+            Git: &{{secrets.SLACK_REPOSITORY}}
+            Docker Hub URL: https://hub.docker.com/r/scofieldkkk0611/xbzz
