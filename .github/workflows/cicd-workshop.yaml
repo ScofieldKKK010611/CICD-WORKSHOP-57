@@ -28,7 +28,7 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_MESSAGE: |
-            *Scan Failed.* 
+            *Scan Failed.* &#x1F60A
       
       - name: Upload file to Slack
         if: failure()
