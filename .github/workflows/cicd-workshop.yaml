@@ -40,29 +40,34 @@ jobs:
           initial_comment: 'post by Xbzz'
     
       - name: Set up QEMU
+        if: success()
         uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
+        if: success()
         uses: docker/setup-buildx-action@v3
       
       - name: Login to Docker Hub
+        if: success()
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
       - name: Build and push
+        if: success()
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: scofieldkkk0611/xbzz:${{github.sha}}
 
       - name: Install Cosign
+        if: success()
         uses: sigstore/cosign-installer@v3.1.2
-      - name: Check install!
-        run: cosign version    
+          
 
       - name: Sign image with a key
+        if: success()
         run: |
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "scofieldkkk0611/xbzz:${{github.sha}}"
         env:
