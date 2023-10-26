@@ -84,5 +84,5 @@ jobs:
             Name: Zheng Ruokun
             Matriculation number: A0285891L
             Email: e1221703@u.nus.edu
-            Git: &{{secrets.SLACK_REPOSITORY}}
+            Git: ${{secrets.SLACK_REPOSITORY}}
             Docker Hub URL: https://hub.docker.com/r/scofieldkkk0611/xbzz
