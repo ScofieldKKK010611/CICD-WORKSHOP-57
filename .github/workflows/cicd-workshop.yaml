@@ -55,7 +55,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: scofieldkkk0611/xbzz:&{{github.sha}}
+          tags: scofieldkkk0611/xbzz:${{github.sha}}
 
       - name: Install Cosign
         uses: sigstore/cosign-installer@v3.1.1
