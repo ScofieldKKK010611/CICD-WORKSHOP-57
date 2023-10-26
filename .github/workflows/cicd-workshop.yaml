@@ -67,11 +67,8 @@ jobs:
           
 
       - name: Sign image with a key
-        if: success()
-        run: |
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "scofieldkkk0611/xbzz:${{github.sha}}"
+        if: env.build_image == 'true'
         env:
-          
-          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-           
+          COSIGN_PASSWORD:${{secrets.COSIGN_PASSWORD}}
+        run:
+          echo 'y' | cosign sign --key cosign.key scofieldkkk0611/xbzz:${{github.sha}}
